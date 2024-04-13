@@ -1,0 +1,23 @@
+{
+  "name": "chime-load-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "npm run clean && npm run build:outboundcall && npm run build:sma",
+    "build:outboundcall": "esbuild src/outbound-call.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=terraform/dist/outbound-call/index.js && npm run postbuild:outboundcall",
+    "postbuild:outboundcall": "cd terraform/dist/outbound-call && zip -r index.zip index.js*",
+    "build:sma": "esbuild src/sma-handler.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=terraform/dist/sma-handler/index.js && npm run postbuild:sma",
+    "postbuild:sma": "cd terraform/dist/sma-handler && zip -r index.zip index.js*"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-chime-sdk-voice": "^3.554.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "esbuild": "^0.14.48"
+  }
+}

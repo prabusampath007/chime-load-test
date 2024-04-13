@@ -1,0 +1,16 @@
+{
+  "extends": "@tsconfig/node14/tsconfig.json",
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "module": "es2020",
+    "noEmit": true,
+    "types": [
+      "reflect-metadata",
+      "node",
+      "node-fetch"
+    ]
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
